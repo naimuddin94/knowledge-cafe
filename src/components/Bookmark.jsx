@@ -12,7 +12,7 @@ const Bookmark = ({ bookmarks, handleRemoveBM }) => {
           >
             <AiFillCloseSquare
               onClick={()=>handleRemoveBM(bookmark)}
-              className="absolute cursor-pointer text-gray-400 hover:text-red-400 duration-200 text-2xl right-1 top-1"
+              className="absolute cursor-pointer text-gray-400 hover:text-red-400 duration-200 text-2xl right-2 top-2"
             />
             <h2>{bookmark.title}</h2>
           </div>

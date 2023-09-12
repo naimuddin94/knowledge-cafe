@@ -3,7 +3,7 @@ import Bookmark from "./Bookmark";
 
 const Bookmarks = ({ readTime, bookmarks, handleRemoveBM }) => {
   return (
-    <div className="w-1/3">
+    <div className="md:w-1/3 py-10">
       <h1 className="text-xl font-medium text-blue-800 bg-blue-50 border-2 border-blue-300 rounded-lg px-8 py-3">
         Reading Time Count: {readTime}min
       </h1>

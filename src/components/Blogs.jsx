@@ -3,7 +3,7 @@ import Blog from "./Blog";
 
 const Blogs = ({ blogs, handleReadTime, handleBookmarks, bookmarks }) => {
   return (
-    <div className="w-2/3">
+    <div className="md:w-2/3">
       {blogs &&
         blogs.map((blog) => (
           <Blog

@@ -6,21 +6,41 @@ const getBookmarkFromLS = () => {
   return [];
 };
 
-const savedBookmarkLS = (bookmarks) => {
-  const bookmarksStringify = JSON.stringify(bookmarks);
-  localStorage.setItem("bookmarks", bookmarksStringify);
+const getMinuteCountFromLS = () => {
+  const minutes = localStorage.getItem("minutes");
+  if (minutes) {
+    return JSON.parse(minutes);
+  }
+  return 0;
+};
+
+const savedBookmarkLS = (keyName, value) => {
+  const bookmarksStringify = JSON.stringify(value);
+  localStorage.setItem(keyName, bookmarksStringify);
 };
 
 const addBookmark = (blogId) => {
   const bookmarks = getBookmarkFromLS();
   bookmarks.push(blogId);
-  savedBookmarkLS(bookmarks);
+  savedBookmarkLS("bookmarks", bookmarks);
+};
+const addMinuteCount = (min) => {
+  const minutesFromLS = getMinuteCountFromLS();
+  const minNum = parseInt(minutesFromLS);
+  const newMinutes = minNum + min;
+  savedBookmarkLS("minutes", newMinutes);
 };
 
 const removeToLS = (blogId) => {
   const bookmarks = getBookmarkFromLS();
   const newBookmarks = bookmarks.filter((id) => id !== blogId);
-  savedBookmarkLS(newBookmarks);
+  savedBookmarkLS("bookmarks", newBookmarks);
 };
 
-export { addBookmark, getBookmarkFromLS, removeToLS };
+export {
+  addBookmark,
+  getBookmarkFromLS,
+  removeToLS,
+  addMinuteCount,
+  getMinuteCountFromLS,
+};

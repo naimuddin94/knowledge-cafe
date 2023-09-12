@@ -5,6 +5,8 @@ import {
   addBookmark,
   getBookmarkFromLS,
   removeToLS,
+  addMinuteCount,
+  getMinuteCountFromLS,
 } from "./utilities/localStorage";
 
 function App() {
@@ -20,6 +22,7 @@ function App() {
 
   useEffect(() => {
     const storedBookmarks = getBookmarkFromLS();
+    const storedMinutes = getMinuteCountFromLS();
     if (blogs.length) {
       const savedBookmarks = [];
       for (const id of storedBookmarks) {
@@ -28,10 +31,15 @@ function App() {
       }
       setBookmarks(savedBookmarks);
     }
+    setReadTime(storedMinutes);
   }, [blogs]);
 
-  const handleReadTime = (time) => {
+  const handleReadTime = (id, time) => {
     setReadTime(readTime + time);
+    addMinuteCount(time);
+    const newBookmarks = bookmarks.filter((bookmark) => bookmark.id !== id);
+    setBookmarks(newBookmarks);
+    removeToLS(id);
   };
 
   const handleBookmarks = (blog) => {
@@ -53,7 +61,7 @@ function App() {
       <h1 className="text-2xl font-bold text-gray-700 text-center my-5">
         Knowledge Cafe
       </h1>
-      <div className="flex gap-4">
+      <div className="md:flex gap-4 mx-8">
         <Blogs
           blogs={blogs}
           handleReadTime={handleReadTime}

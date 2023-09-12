@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
-import { BsBookmarks, BsBookmarksFill } from "react-icons/bs";
+import { BsBookmarks } from "react-icons/bs";
 
 const Blog = ({ blog, handleReadTime, handleBookmarks, bookmarks }) => {
   const {
+    id,
     cover,
     title,
     author_img,
@@ -11,11 +12,12 @@ const Blog = ({ blog, handleReadTime, handleBookmarks, bookmarks }) => {
     reading_time,
     hashtags,
   } = blog;
+
   return (
-    <div className="space-y-4 mb-12 bg-gray-50 p-10 rounded-md">
+    <div className="space-y-4 mb-12 bg-gray-50 p-4 md:p-10 rounded-md">
       <img src={cover} alt="" className="w-full rounded-md" />
-      <h1 className="text-3xl font-bold text-gray-700">{title}</h1>
-      <div className="flex justify-between">
+      <h1 className="text-xl md:text-3xl font-bold text-gray-700">{title}</h1>
+      <div className="sm:flex justify-between">
         <div className="flex gap-3 items-center">
           <img src={author_img} className="w-16 rounded-full" alt="" />
           <div>
@@ -23,7 +25,7 @@ const Blog = ({ blog, handleReadTime, handleBookmarks, bookmarks }) => {
             <small>{posted_date}</small>
           </div>
         </div>
-        <div className="flex items-center gap-1">
+        <div className="mt-2 sm:mt-0 bg-slate-100 h-fit w-fit px-4 py-1 rounded-md flex items-center gap-1">
           <h5>{reading_time}min read</h5>
           <button onClick={() => handleBookmarks(blog)}>
             <BsBookmarks />
@@ -39,7 +41,7 @@ const Blog = ({ blog, handleReadTime, handleBookmarks, bookmarks }) => {
           ))}
       </div>
       <button
-        onClick={() => handleReadTime(reading_time)}
+        onClick={() => handleReadTime(id, reading_time)}
         className="text-blue-700 underline font-medium"
       >
         Mark as read
