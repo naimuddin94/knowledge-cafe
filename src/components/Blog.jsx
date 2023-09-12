@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { BsBookmarks } from "react-icons/bs";
+import { BsBookmarks, BsBookmarksFill } from "react-icons/bs";
 
 const Blog = ({ blog, handleReadTime, handleBookmarks, bookmarks }) => {
   const {
@@ -12,6 +12,9 @@ const Blog = ({ blog, handleReadTime, handleBookmarks, bookmarks }) => {
     reading_time,
     hashtags,
   } = blog;
+
+  const isColor = bookmarks.includes(blog);
+  console.log(isColor, bookmarks.length);
 
   return (
     <div className="space-y-4 mb-12 bg-gray-50 p-4 md:p-10 rounded-md">
@@ -28,7 +31,11 @@ const Blog = ({ blog, handleReadTime, handleBookmarks, bookmarks }) => {
         <div className="mt-2 sm:mt-0 bg-slate-100 h-fit w-fit px-4 py-1 rounded-md flex items-center gap-1">
           <h5>{reading_time}min read</h5>
           <button onClick={() => handleBookmarks(blog)}>
-            <BsBookmarks />
+            {isColor ? (
+              <BsBookmarksFill className="text-yellow-500" />
+            ) : (
+              <BsBookmarks />
+            )}
           </button>
         </div>
       </div>

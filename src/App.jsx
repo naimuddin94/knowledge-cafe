@@ -13,7 +13,7 @@ function App() {
   const [blogs, setBlogs] = useState([]);
   const [readTime, setReadTime] = useState(0);
   const [bookmarks, setBookmarks] = useState([]);
-
+  
   useEffect(() => {
     fetch("blogs.json")
       .then((res) => res.json())
@@ -33,6 +33,7 @@ function App() {
     }
     setReadTime(storedMinutes);
   }, [blogs]);
+
 
   const handleReadTime = (id, time) => {
     setReadTime(readTime + time);

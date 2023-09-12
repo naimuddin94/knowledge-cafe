@@ -11,8 +11,8 @@ const Bookmark = ({ bookmarks, handleRemoveBM }) => {
             key={bookmark.id}
           >
             <AiFillCloseSquare
-              onClick={()=>handleRemoveBM(bookmark)}
-              className="absolute cursor-pointer text-gray-400 hover:text-red-400 duration-200 text-2xl right-2 top-2"
+              onClick={() => handleRemoveBM(bookmark)}
+              className="absolute cursor-pointer text-gray-400 hover:text-red-400 hover:scale-110 duration-200 text-2xl right-2 top-2"
             />
             <h2>{bookmark.title}</h2>
           </div>
